@@ -9,7 +9,8 @@ function setUser(user){
     {
         _id: user._id,
         email: user.email,
-    }, secret);
+    }, 
+    secret);
 };
 
 function getUser(token){
