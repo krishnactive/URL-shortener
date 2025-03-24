@@ -15,9 +15,23 @@ function checkForAuthentication(req, res, next){
 
 }
 
+function restrictTo(roles){
+    return function(req, res, next){
+        if(!req.user){
+            return res.redirect("/login");
+        } 
+        if(!roles.includes(req,res,next)){
+            return res.end("UnAuthorised");
+        }
+
+        return next();
+    };
+
+
+}
 
 
 module.exports = {
-    restrictToLoggedinUserOnly,
-    checkAuth,
-}
+    checkForAuthentication,
+    restrictTo,
+};
